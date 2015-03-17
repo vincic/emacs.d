@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ngdirective
+# key: ngdirective
+# binding: direct-keybinding
+# --
+'use strict';
+
+angular.module('app')
+  .directive('MyDirective', function () {
+    return {
+      templateUrl: 'components/mydirective/mydirective.html',
+      restrict: 'EA',
+      link: function (scope, element, attrs) {
+      }
+    };
+  });

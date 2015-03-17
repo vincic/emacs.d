@@ -1,0 +1,24 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: nodeapi
+# key: nodeapi
+# binding: direct-keybinding
+# --
+'use strict';
+
+var Controller = require('./.js');
+
+var SetupAPI = function(app) {
+
+    var baseUrl = '/app';
+
+    // POST api
+    app.post(baseUrl + '/', Controller.Post);
+
+    // GET api
+    app.get(baseUrl + '/', Controller.Get);
+
+};
+
+module.exports = {
+    SetupAPI: SetupAPi
+};
