@@ -145,6 +145,11 @@
             (message "init completed in %.2fms"
                      (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 
 (provide 'init)
 

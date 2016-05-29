@@ -50,7 +50,7 @@
                 html-mode nxml-mode sh-mode smarty-mode clojure-mode
                 lisp-mode textile-mode markdown-mode tuareg-mode
                 js3-mode css-mode less-css-mode sql-mode
-                sql-interactive-mode
+                sql-interactive-mode typescript-mode
                 inferior-emacs-lisp-mode))
   (add-to-list 'ac-modes mode))
 

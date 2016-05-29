@@ -1,0 +1,61 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ngservice-storage
+# key: ngservice-storage
+# binding: direct-keybinding
+# --
+(function() {
+
+    'use strict';
+
+    angular.module('app').factory('MyService', MyService);
+
+    /*@ngInject*/
+    function MyService($q,$log,$localStorage){
+
+
+        // Private
+
+        // Public
+
+        var service = {};
+
+        service.data = {
+            transactions: [],
+        };
+
+        service.staticData = {
+
+        };
+
+
+        service.SavetoLocalStorage = function(){
+            $localStorage.myservice = angular.copy(service.data);
+            $localStorage.myserviceStatic = angular.copy(service.staticData);
+        };
+
+        service.LoadFromLocalStorage = function(){
+            if($localStorage.myservice) {
+                service.data = angular.copy($localStorage.myservice);
+                API.token = service.data.token;
+            }
+
+            if($localStorage.myserviceStatic) {
+                service.staticData = angular.copy($localStorage.myserviceStatic);
+            }
+
+        };
+
+        service.DeleteData = function(){
+            $localStorage.myservice=null;
+            $localStorage.myserviceStatic = null;
+
+            service.data = {customer: {}, contracts: [], contractLines: [], token: null};
+            service.staticData = {vehicleClasses: [], countries: [] }
+        };
+
+
+        return service;
+
+    }
+
+})();
