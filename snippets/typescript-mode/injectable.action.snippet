@@ -1,0 +1,39 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: injectable redux actions
+# key: injact
+# binding: direct-keybinding
+# --
+import { Injectable }    from '@angular/core';
+import { NgRedux }       from 'ng2-redux';
+import { IAppState }     from '../store/index';
+import { $1 }  from '../store/constants';
+
+
+@Injectable()
+export class $2Actions {
+
+    /**
+     * Constructor
+     *
+     * @class $2Actions
+     * @constructor
+     */
+    constructor (
+        private ngRedux: NgRedux<IAppState>
+    ) {}
+
+
+    /**
+     * $4
+     *
+     * @class $2Actions
+     * @method $3
+     * @param data {any} The payload.
+     */
+    public $3( data: any ) {
+        this.ngRedux.dispatch({
+            type: $1,
+            payload: data
+        });
+    }
+}
