@@ -8,6 +8,8 @@
 
 (add-auto-mode 'html-mode "\\.\\(jsp\\|tmpl\\)\\'")
 
+(global-set-key (kbd "C-c C-r") 'mc/mark-sgml-tag-pair)
+
 ;; Note: ERB is configured in init-ruby-mode
 
 (provide 'init-html)
