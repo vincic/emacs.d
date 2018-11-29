@@ -11,19 +11,21 @@
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
-  (company-mode +1))
+  (company-mode +1)
+  (local-set-key (kbd "<s-backspace>") 'tide-fix))
 
 (setq company-dabbrev-downcase 0)
-(setq company-idle-delay 0.3)
+(setq company-idle-delay 0.1)
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 ;; formats the buffer before saving
-;; (add-hook 'before-save-hook 'tide-format-before-save)
+(add-hook 'before-save-hook 'tide-format-before-save)
 ;; format options
 (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+
 
 
 (provide 'init-typescript)
