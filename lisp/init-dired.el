@@ -1,4 +1,4 @@
-(require-package 'dired+)
+(require 'dired+)
 (require-package 'dired-sort)
 
 (setq-default diredp-hide-details-initially-flag nil
