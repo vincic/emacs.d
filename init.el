@@ -39,6 +39,8 @@
 ;;----------------------------------------------------------------------------
 (require 'init-preload-local nil t)
 
+(require-package 'use-package)
+
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -91,6 +93,7 @@
 ;;(require 'init-erlang)
 (require 'init-javascript)
 (require 'init-typescript)
+
 ;;(require 'init-php)
 (require 'init-org)
 ;;(require 'init-nxml)
@@ -135,8 +138,7 @@
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
 (require 'server)
-(unless (server-running-p)
-  (server-start))
+(server-start)
 
 
 ;;----------------------------------------------------------------------------
