@@ -2,6 +2,10 @@
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
+(custom-set-variables
+ '(use-package-always-ensure t)
+ '(use-package-compute-statistics t))
+
 (let ((minver "23.3"))
   (when (version<= emacs-version "23.1")
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
