@@ -61,4 +61,35 @@
   (:map projectile-mode-map
         ("C-c p" . projectile-command-map)))
 
+
+(use-package dap-mode
+  :ensure f
+  :after lsp-mode
+  :commands dap-debugp
+  :init
+  (dap-mode 1)
+  (dap-ui-mode 1)
+
+  :hook ((typescript-mode . dap-ui-mode)
+         (typescript-mode . dap-mode)))
+
+(require 'dap-firefox)
+(require 'dap-chrome)
+
+(setq dap-chrome-debug-program `("node" ,(expand-file-name "/home/sasha/.vscode/extensions/msjsdiag.debugger-for-chrome-4.11.3/out/src/chromeDebug.js")))
+(dap-register-debug-template "Chromium Run Configuration"
+                             (list :type "chrome"
+                                   :cwd "/tmp/nds-frontend"
+                                   :request "launch"
+                                   :reAttach t
+                                   :program t
+                                   :url "http://localhost:9200/login"
+                                   :webRoot "/home/sasha/dev/netnod/nds-frontend"
+                                   :runtimeExecutable "/usr/bin/chromium"
+                                   :runtimeArgs (list "--new-window"
+                                                      "-user-data-dir=\"/tmp/nds-frontend\""
+                                                      "--remote-debugging-port=9222"
+                                                      "--disable-background-networking")
+                                   :name "Chromium::Run"))
+
 (provide 'init-typescript)
