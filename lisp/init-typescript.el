@@ -33,7 +33,10 @@
   :bind
   (:map lsp-mode-map
         ("C-c C-r" . lsp-rename))
-        ([remap typescript-find-symbol] . lsp-goto-implementation))
+  ([remap typescript-find-symbol] . lsp-goto-implementation)
+  :config
+  (append lsp-language-id-configuration '(ng2-ts-mode . "typescript")))
+
 
 (use-package lsp-ui
   :commands
@@ -53,6 +56,7 @@
 (use-package typescript-mode
   :hook
   (typescript-mode . lsp))
+
 
 (use-package company-lsp :commands company-lsp)
 
@@ -91,5 +95,6 @@
                                                       "--remote-debugging-port=9222"
                                                       "--disable-background-networking")
                                    :name "Chromium::Run"))
+
 
 (provide 'init-typescript)
