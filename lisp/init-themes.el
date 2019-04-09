@@ -47,8 +47,21 @@
   (whitespace-trailing         ((t (:background "#ff0000"))))
   (whitespace-tab              ((t (:background "#21252b")))))
 
+(use-package fira-code-mode
+  :ensure f
+  :init
+  (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
+  (set-face-attribute 'default nil :family "Fira Code" :height 100)
+  :hook
+  (prog-mode . fira-code-mode))
+
+(use-package all-the-icons)
+
 (use-package doom-modeline
   :hook
   (after-init . doom-modeline-mode))
+
+
 
 (provide 'init-themes)
