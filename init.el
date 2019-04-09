@@ -89,6 +89,14 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
+
+(use-package prescient
+  :custom
+  (prescient-filter-method '(literal regexp initialism fuzzy))
+  (prescient-save-file "~/.emacs.d/var/prescient-save.el")
+  :config
+  (prescient-persist-mode))
+
 (require 'init-smex)
 ;; (require 'init-ido)
 (require 'init-ivy)
