@@ -1,6 +1,26 @@
-
+(require 'package)
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
+
+
+(add-function :after after-focus-change-function 'garbage-collect)
+
+(custom-set-variables
+ '(debug-on-error t))
+
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/")
+             '("gnu" . "http://elpa.gnu.org/packages/"))
+
+
+(condition-case err
+    (require 'use-package)
+  (error (progn
+           (package-refresh-contents)
+           (package-install 'use-package)
+           (require 'use-package))))
+
 
 (custom-set-variables
  '(use-package-always-ensure t)
@@ -26,6 +46,7 @@
 (setq gc-cons-threshold (* 128 1024 1024))
 (add-hook 'after-init-hook
           (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
+
 
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
@@ -75,7 +96,7 @@
 (require 'init-company)
 (require 'init-windows)
 (require 'init-sessions)
-(require 'init-fonts)
+;;(require 'init-fonts)
 (require 'init-mmm)
 
 (require 'init-editing-utils)
