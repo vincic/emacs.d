@@ -35,7 +35,16 @@
         ("C-c C-r" . lsp-rename))
   ([remap typescript-find-symbol] . lsp-goto-implementation)
   :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection (lambda ()
+                                                            (cons lsp-clients-typescript-server
+                                                                  lsp-clients-typescript-server-args)))
+                    :major-modes '(ng2-ts-mode)
+                    :priority -1
+                    :ignore-messages '("readFile .*? requested by Vue but content not available")
+                    :server-id 'ng2ts-ls))
   (append lsp-language-id-configuration '(ng2-ts-mode . "typescript")))
+
 
 
 (use-package lsp-ui
