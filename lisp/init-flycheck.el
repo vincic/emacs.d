@@ -1,6 +1,23 @@
-(when (maybe-require-package 'flycheck)
-  (add-hook 'after-init-hook 'global-flycheck-mode)
-  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+(use-package flycheck
+  :hook
+  (prog-mode . flycheck-mode)
+  :custom
+  (flycheck-idle-change-delay 1.5)
+  (flycheck-check-syntax-automatically '(idle-change mode-enabled))
+  (flycheck-disabled-checkers '(emacs-lisp-checkdoc
+                                rust-cargo
+                                go-build
+                                go-errcheck
+                                go-gofmt
+                                go-golint
+                                go-megacheck
+                                go-unconvert
+                                go-vet
+                                gometalinter)))
+
+(use-package flycheck-posframe
+  :hook
+  (flycheck-mode . flycheck-posframe-mode))
 
 
 (provide 'init-flycheck)
