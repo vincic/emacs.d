@@ -124,13 +124,17 @@
 (require 'init-markdown)
 ;;(require 'init-csv)
 ;;(require 'init-erlang)
-(require 'init-javascript)
+;;(require 'init-javascript)
 (require 'init-typescript)
 
 ;;(require 'init-php)
 (require 'init-org)
 ;;(require 'init-nxml)
-(require 'init-html)
+;;(require 'init-html)
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode)))
+
 (require 'init-css)
 (require 'init-haml)
 (require 'init-python-mode)
