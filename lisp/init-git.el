@@ -75,5 +75,6 @@
 (require-package 'git-messenger)
 (global-set-key (kbd "C-x v p") #'git-messenger:popup-message)
 
+(use-package forge)
 
 (provide 'init-git)
