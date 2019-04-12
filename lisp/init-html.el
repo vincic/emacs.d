@@ -5,9 +5,6 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint)))
   :mode
   (("\\.erb\\'" . web-mode)
    ("\\.js\\'" . web-mode)
