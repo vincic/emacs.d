@@ -26,6 +26,10 @@
 ;; format options
 ;;(setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 
+(use-package prettier-js
+  :ensure t
+  :hook ((typescript-mode . prettier-js-mode)))
+
 (use-package lsp-mode
   :custom
   (lsp-prefer-flymake nil)
