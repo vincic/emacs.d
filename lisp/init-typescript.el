@@ -30,6 +30,14 @@
   :ensure t
   :hook ((typescript-mode . prettier-js-mode)))
 
+(use-package add-node-modules-path
+  :ensure t)
+
+(use-package eslint-fix
+  :ensure t
+  :hook
+  ((typescipt-mode . eslint-fix)))
+
 (use-package lsp-mode
   :custom
   (lsp-prefer-flymake nil)
@@ -67,8 +75,12 @@
         ([remap xref-find-references] . lsp-ui-peek-find-references)))
 
 (use-package typescript-mode
+  :config
+  (add-hook 'before-save-hook 'prettier-js)
   :hook
-  (typescript-mode . lsp))
+  (typescript-mode . add-node-modules-path)
+  (typescript-mode . lsp)
+  (typescript-mode . eslint-fix))
 
 
 (use-package company-lsp :commands company-lsp)
