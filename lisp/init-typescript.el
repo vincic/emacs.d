@@ -79,8 +79,7 @@
   (add-hook 'before-save-hook 'prettier-js)
   :hook
   (typescript-mode . add-node-modules-path)
-  (typescript-mode . lsp)
-  (typescript-mode . eslint-fix))
+  (typescript-mode . lsp))
 
 
 (use-package company-lsp :commands company-lsp)
