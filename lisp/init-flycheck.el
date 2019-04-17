@@ -13,7 +13,9 @@
                                 go-megacheck
                                 go-unconvert
                                 go-vet
-                                gometalinter)))
+                                gometalinter
+                                json-jsonlist
+                                javascript-jshint)))
 
 (use-package flycheck-posframe
   :hook
