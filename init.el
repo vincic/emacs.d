@@ -163,6 +163,10 @@
 (use-package docker-compose-mode
   :ensure t
   :defer t)
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 (require-package 'gnuplot)
 (require-package 'lua-mode)
