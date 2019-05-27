@@ -38,6 +38,8 @@
      ("javascript" . "//")
      ("php"        . "/*")
      ))
+  :hook
+  (before-save-hook delete-trailling-whitespace)
   :config
   (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))

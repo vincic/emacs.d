@@ -27,8 +27,7 @@
 ;;(setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 
 (use-package prettier-js
-  :ensure t
-  :hook ((typescript-mode . prettier-js-mode)))
+  :ensure t)
 
 (use-package add-node-modules-path
   :ensure t)
@@ -75,10 +74,9 @@
         ([remap xref-find-references] . lsp-ui-peek-find-references)))
 
 (use-package typescript-mode
-  :config
-  (add-hook 'before-save-hook 'prettier-js)
   :hook
   (typescript-mode . add-node-modules-path)
+  (before-save-hook delete-trailling-whitespace)
   (typescript-mode . lsp))
 
 
