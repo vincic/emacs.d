@@ -77,4 +77,14 @@
 
 (use-package forge)
 
+(setq forge-topic-list-columns
+      '(("#" 4
+         (lambda (a b)
+           (> (car a) (car b)))
+         (:right-align t) number nil)
+        ("Title" 35 t nil title  nil)
+        ("Milestone" 9 t nil milestone nil)
+        ("State" 6 t nil state nil)
+        ("Updated" 10 t nill updated nil)
+        ))
 (provide 'init-git)
