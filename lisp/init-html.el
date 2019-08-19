@@ -40,6 +40,7 @@
      ))
   :hook
   (before-save-hook delete-trailling-whitespace)
+  (typescript-mode . lsp)
   :config
   (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
