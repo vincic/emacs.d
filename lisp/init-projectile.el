@@ -12,7 +12,11 @@
      '(:eval
        (if (file-remote-p default-directory)
            " Pr"
-         (format " Pr[%s]" (projectile-project-name)))))))
+         (format " Pr[%s]" (projectile-project-name)))))
+    (setq projectile-globally-ignored-directories
+          (append '("node_modules" "dist" "test-reports")
+                  projectile-globally-ignored-directories))))
+
 
 
 (provide 'init-projectile)
