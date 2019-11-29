@@ -46,6 +46,7 @@
         ("C-c C-r" . lsp-rename))
   ([remap typescript-find-symbol] . lsp-goto-implementation)
   :config
+  (setq lsp-enable-snippet nil)
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection (lambda ()
                                                             (cons lsp-clients-typescript-server
