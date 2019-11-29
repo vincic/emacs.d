@@ -54,7 +54,12 @@
                     :priority -1
                     :ignore-messages '("readFile .*? requested by Vue but content not available")
                     :server-id 'ng2ts-ls))
-  (append lsp-language-id-configuration '(ng2-ts-mode . "typescript")))
+  (append lsp-language-id-configuration '(ng2-ts-mode . "typescript"))
+  (setq lsp-clients-typescript-log-verbosity "debug"
+        lsp-clients-typescript-plugins
+        (vector
+         (list :name "@vsintellicode/typescript-intellicode-plugin"
+               :location "/home/sasha/.vscode/extensions/visualstudioexptteam.vscodeintellicode-1.2.0"))))
 
 
 
