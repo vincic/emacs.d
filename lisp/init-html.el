@@ -40,7 +40,7 @@
      ))
   :hook
   (before-save-hook delete-trailling-whitespace)
-  (typescript-mode . lsp)
+  (web-mode . lsp)
   :config
   (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
@@ -63,6 +63,9 @@ This updates `tab-stop-list', but not `tab-width'."
     (setq web-mode-markup-indent-offset width)
     (setq web-mode-css-indent-offset width)
     (setq web-mode-code-indent-offset width)))
+
+(setq web-mode-content-types-alist
+      '(("jsx" . "\\.js[x]?\\'")))
 
 (global-set-key (kbd "C-c C-r") 'mc/mark-sgml-tag-pair)
 
