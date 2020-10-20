@@ -44,7 +44,7 @@
   :preface
   (defvar ian/indent-width 2)
   :config
-  (setq user-full-name "Ian Y.E. Pan"
+  (setq user-full-name "Sasha Vincic"
         frame-title-format '("Emacs")
         ring-bell-function 'ignore
         default-directory "~/"
@@ -167,7 +167,7 @@
   (setq initial-frame-alist (quote ((fullscreen . maximized))))
   (blink-cursor-mode -1)
   (when (member "Source Code Pro" (font-family-list))
-    (set-frame-font "Source Code Pro-13:weight=regular" t t)))
+    (set-frame-font "Source Code Pro-18:weight=regular" t t)))
 
 (use-package ediff
   :ensure nil
@@ -298,39 +298,6 @@
   :hook (prog-mode . hes-mode))
 
 ;; Vi keybindings
-
-(use-package evil
-  :diminish undo-tree-mode
-  :init
-  (setq evil-want-C-u-scroll t
-        evil-want-keybinding nil
-        evil-shift-width ian/indent-width)
-  :hook (after-init . evil-mode)
-  :preface
-  (defun ian/save-and-kill-this-buffer ()
-    (interactive)
-    (save-buffer)
-    (kill-this-buffer))
-  :config
-  (with-eval-after-load 'evil-maps ; avoid conflict with company tooltip selection
-    (define-key evil-insert-state-map (kbd "C-n") nil)
-    (define-key evil-insert-state-map (kbd "C-p") nil))
-  (evil-ex-define-cmd "q" #'kill-this-buffer)
-  (evil-ex-define-cmd "wq" #'ian/save-and-kill-this-buffer))
-
-(use-package evil-collection
-  :after evil
-  :config
-  (setq evil-collection-company-use-tng nil)
-  (evil-collection-init))
-
-(use-package evil-commentary
-  :after evil
-  :diminish
-  :config (evil-commentary-mode +1))
-
-(use-package evil-magit)
-
 ;; Git integration
 
 (use-package magit
@@ -532,6 +499,8 @@
   :config
   (with-eval-after-load 'org
     (define-key org-mode-map (kbd "C-<tab>") nil))
+  (setq org-agenda-files (list "~/Cloud/NextCloud/Documents"))
+  (setq org-agenda-include-diary t)
   (use-package org-bullets :hook (org-mode . org-bullets-mode)))
 
 (use-package markdown-mode
@@ -605,6 +574,11 @@
   (setq ranger-cleanup-eagerly t
         ranger-width-preview 0.5
         ranger-width-parents 0.125))
+
+(use-package restclient)
+
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
 
 (provide 'init)
 ;;; init.el ends here
