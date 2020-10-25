@@ -435,6 +435,8 @@
           js-mode        ; typescript-language-server
           python-mode    ; mspyls
           ) . lsp)
+  (before-save-hook delete-trailling-whitespace)
+  (js-mode . eslintd-fix-mode)
   :commands lsp
   :bind
   (:map lsp-mode-map
@@ -501,6 +503,7 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled newline))
   (setq flycheck-python-flake8-executable "python3")
   (setq flycheck-flake8rc "~/.config/flake8")
+  (setq flycheck-javascript-eslint-executable "eslint_d")
   (setq-default flycheck-disabled-checkers '(python-pylint)))
 
 (use-package org
