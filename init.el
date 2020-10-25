@@ -581,5 +581,9 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 
+(use-package server
+  :config
+  (server-start))
+
 (provide 'init)
 ;;; init.el ends here
