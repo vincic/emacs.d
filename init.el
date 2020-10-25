@@ -355,16 +355,6 @@
   (setq swiper-action-recenter t)
   (setq swiper-goto-start-of-match t))
 
-(use-package ivy-posframe
-  :after ivy
-  :diminish
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
-        ivy-posframe-height-alist '((t . 20))
-        ivy-posframe-parameters '((internal-border-width . 10)))
-  (setq ivy-posframe-width 70)
-  (ivy-posframe-mode +1))
-
 (use-package ivy-rich
   :preface
   (defun ivy-rich-switch-buffer-icon (candidate)
