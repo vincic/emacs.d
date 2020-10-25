@@ -436,10 +436,29 @@
           python-mode    ; mspyls
           ) . lsp)
   :commands lsp
+  :bind
+  (:map lsp-mode-map
+        ("C-c C-r" . lsp-rename)
+        ("M-." . lsp-find-implementation))
   :config
   (setq lsp-prefer-flymake nil)
   (setq lsp-enable-symbol-highlighting nil)
   (setq lsp-signature-auto-activate nil))
+
+(use-package lsp-ui
+  :commands
+  (lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-use-webkit t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-max-width 100)
+  (lsp-ui-doc-max-height 200)
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-flycheck-enable t)
+  :bind
+  (:map lsp-ui-mode-map
+        ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+        ([remap xref-find-references] . lsp-ui-peek-find-references)))
 
 (use-package lsp-java
   :after lsp)
