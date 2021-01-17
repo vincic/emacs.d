@@ -514,7 +514,13 @@
     (define-key org-mode-map (kbd "C-<tab>") nil))
   (setq org-agenda-files (list "~/Cloud/NextCloud/Documents"))
   (setq org-agenda-include-diary t)
+  (setq org-directory "~/Cloud/NextCloud/Documents")
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
   (use-package org-bullets :hook (org-mode . org-bullets-mode)))
+
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
 
 (use-package markdown-mode
   :hook (markdown-mode . visual-line-mode))
@@ -591,9 +597,6 @@
 (use-package restclient)
 
 (use-package puppet-mode)
-
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
 
 (use-package server
   :config
