@@ -414,6 +414,8 @@
   (setq prescient-filter-method '(literal regexp initialism fuzzy))
   (prescient-persist-mode +1))
 
+(use-package eslintd-fix)
+
 (use-package ivy-prescient
   :after (prescient ivy)
   :config
