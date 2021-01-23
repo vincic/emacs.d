@@ -219,9 +219,9 @@
 
 ;; GUI enhancements
 
-(use-package doom-themes
+(use-package tron-legacy-theme
   :custom-face (cursor ((t (:background "#eeaf2c"))))
-  :config (load-theme 'doom-dracula t))
+  :config (load-theme 'tron-legacy t))
 
 (use-package solaire-mode
   :hook (((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
