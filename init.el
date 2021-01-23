@@ -596,6 +596,10 @@
         ranger-width-preview 0.5
         ranger-width-parents 0.125))
 
+(use-package expand-region
+  :config
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
 (use-package restclient)
 
 (use-package puppet-mode)
