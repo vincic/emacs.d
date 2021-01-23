@@ -126,6 +126,9 @@
   :mode ("\\.jsx?\\'" . js-mode)
   :config (setq js-indent-level ian/indent-width))
 
+(use-package npm
+  :ensure t)
+
 (use-package xref
   :ensure nil
   :config
@@ -587,7 +590,7 @@
         which-key-idle-secondary-delay 0.4))
 
 (use-package exec-path-from-shell
-  :config (when (memq window-system '(mac ns x))
+  :config (when (memq window-system '(mac))
             (exec-path-from-shell-initialize)))
 
 (use-package ranger
