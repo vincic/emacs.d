@@ -607,6 +607,11 @@
 
 (use-package puppet-mode)
 
+(use-package docker)
+(use-package docker-compose-mode
+  :ensure t)
+(use-package dockerfile-mode
+  :ensure t)
 (use-package server
   :config
   (server-start))
