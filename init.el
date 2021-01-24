@@ -8,6 +8,7 @@
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6
       file-name-handler-alist nil
+      create-lockfiles nil
       site-run-file nil)
 
 (defvar ian/gc-cons-threshold 20000000)
