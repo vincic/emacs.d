@@ -453,6 +453,11 @@
   (setq lsp-enable-symbol-highlighting nil)
   (setq lsp-signature-auto-activate nil))
 
+(use-package dap-mode
+  :ensure t
+  :config
+  (require 'dap-chrome))
+
 (use-package lsp-ui
   :commands
   (lsp-ui-mode)
