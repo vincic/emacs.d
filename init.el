@@ -404,9 +404,10 @@
   (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
   (define-key projectile-mode-map (kbd "s-p") #'projectile-find-file) ; counsel
   (define-key projectile-mode-map (kbd "s-F") #'projectile-ripgrep) ; counsel
-  (setq projectile-sort-order 'recentf
+  (setq projectile-sort-order 'recently-active
         projectile-indexing-method 'hybrid
-        projectile-completion-system 'ivy))
+        projectile-completion-system 'ivy
+        projectile-enable-caching t))
 
 (use-package wgrep
   :config
