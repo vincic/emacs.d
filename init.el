@@ -478,11 +478,12 @@
   :after lsp)
 
 (use-package lsp-python-ms
+  :ensure t
   :hook (python-mode . (lambda () (require 'lsp-python-ms)))
   :config
   (setq
    lsp-python-ms-executable
-   "~/python-language-server/output/bin/Release/osx-x64/publish/Microsoft.Python.LanguageServer"))
+   "~/.config/emacs/.cache/lsp/mspyls/Microsoft.Python.LanguageServer"))
 
 (use-package pyvenv
   :diminish
