@@ -520,16 +520,80 @@
   (setq-default flycheck-disabled-checkers '(python-pylint)))
 
 (use-package org
+  :ensure t        ; But it comes with Emacs now!?
   :hook ((org-mode . visual-line-mode)
-         (org-mode . org-indent-mode))
+        (org-mode . org-indent-mode))
+  :init
+  (setq org-use-speed-commands t
+        org-return-follows-link t
+        org-hide-emphasis-markers t
+        org-completion-use-ido t
+        org-outline-path-complete-in-steps nil
+        org-src-fontify-natively t   ;; Pretty code blocks
+        org-src-tab-acts-natively t
+        org-confirm-babel-evaluate nil
+        org-todo-keywords '((sequence "TODO(t)" "DOING(g)" "|" "DONE(d)")
+                            (sequence "|" "CANCELED(c)"))
+        org-agenda-files (list "~/Cloud/NextCloud/Documents")
+        org-agenda-include-diary t
+        org-directory "~/Cloud/NextCloud/Documents"
+        org-default-notes-file (concat org-directory "/notes.org"))
+  (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
+  (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode))   ;; Journal entries
+  (add-hook 'org-mode-hook 'yas-minor-mode-on)
+  :bind (("C-c l" . org-store-link)
+         ("C-c c" . org-capture)
+         ("C-M-|" . indent-rigidly))
   :config
-  (with-eval-after-load 'org
-    (define-key org-mode-map (kbd "C-<tab>") nil))
-  (setq org-agenda-files (list "~/Cloud/NextCloud/Documents"))
-  (setq org-agenda-include-diary t)
-  (setq org-directory "~/Cloud/NextCloud/Documents")
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (use-package org-bullets :hook (org-mode . org-bullets-mode)))
+  (font-lock-add-keywords            ; A bit silly but my headers are now
+   'org-mode `(("^\\*+ \\(TODO\\) "  ; shorter, and that is nice canceled
+                (1 (progn (compose-region (match-beginning 1) (match-end 1) "⚑")
+                          nil)))
+               ("^\\*+ \\(DOING\\) "
+                (1 (progn (compose-region (match-beginning 1) (match-end 1) "⚐")
+                          nil)))
+               ("^\\*+ \\(CANCELED\\) "
+                (1 (progn (compose-region (match-beginning 1) (match-end 1) "✘")
+                          nil)))
+               ("^\\*+ \\(DONE\\) "
+                (1 (progn (compose-region (match-beginning 1) (match-end 1) "✔")
+                          nil)))))
+
+  (define-key org-mode-map (kbd "M-C-n") 'org-end-of-item-list)
+  (define-key org-mode-map (kbd "M-C-p") 'org-beginning-of-item-list)
+  (define-key org-mode-map (kbd "M-C-u") 'outline-up-heading)
+  (define-key org-mode-map (kbd "M-C-w") 'org-table-copy-region)
+  (define-key org-mode-map (kbd "M-C-y") 'org-table-paste-rectangle)
+
+  (define-key org-mode-map [remap org-return] (lambda () (interactive)
+                                                (if (org-in-src-block-p)
+                                                    (org-return)
+                                                  (org-return-indent)))))
+(use-package org-bullets
+   :ensure t
+   :init (add-hook 'org-mode-hook 'org-bullets-mode))
+
+(use-package org
+  :config
+  (add-to-list 'org-src-lang-modes '("dot" . "graphviz-dot"))
+
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((shell      . t)
+                                 (js         . t)
+                                 (emacs-lisp . t)
+                                 (perl       . t)
+                                 (clojure    . t)
+                                 (python     . t)
+                                 (ruby       . t)
+                                 (dot        . t)
+                                 (css        . t)
+                                 (plantuml   . t))))
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Cloud/NextCloud/Documents/gtd.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/Cloud/NextCloud/Documents/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
 
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
