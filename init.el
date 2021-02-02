@@ -53,7 +53,8 @@
         scroll-conservatively 10000
         scroll-preserve-screen-position t
         auto-window-vscroll nil
-        load-prefer-newer t)
+        load-prefer-newer t
+        calendar-week-start-day 1)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (tool-bar-mode -1)
   (menu-bar-mode -1)
