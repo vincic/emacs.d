@@ -650,6 +650,11 @@
     (interactive)
     (ian/format-code)))
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;; Miscellaneous
 
 (use-package diminish
