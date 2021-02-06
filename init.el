@@ -574,6 +574,9 @@
    :ensure t
    :init (add-hook 'org-mode-hook 'org-bullets-mode))
 
+(use-package ob-restclient
+  :ensure t)
+
 (use-package org
   :config
   (add-to-list 'org-src-lang-modes '("dot" . "graphviz-dot"))
@@ -588,6 +591,7 @@
                                  (ruby       . t)
                                  (dot        . t)
                                  (css        . t)
+                                 (restclient . t)
                                  (plantuml   . t))))
 
 (setq org-capture-templates
